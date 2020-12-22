@@ -9,6 +9,7 @@ __usage() {
 [[ $# -lt 1 ]] && __usage
 
 MACHINE_OVF_FILE="$HOME/Downloads/MSEdge - Win10/MSEdge - Win10.ovf"
+THIS_REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
 NUM_CPUS=2
 MB_RAM=2048
 MB_VRAM=27
@@ -27,11 +28,18 @@ for vm_name in "${VM_NAMES[@]}"; do
     --nic2 hostonly \
     --hostonlyadapter2 vboxnet0 \
     --vram ${MB_VRAM} \
-    --graphicscontroller vboxsvga
+    --graphicscontroller vboxsvga \
+    --clipboard bidirectional \
+    --draganddrop bidirectional
   vboxmanage storageattach ${vm_name} \
     --storagectl "IDE Controller" \
     --port 1 \
     --device 0 \
     --type dvddrive \
     --medium /Applications/VirtualBox.app/Contents/MacOS/VBoxGuestAdditions.iso
+  vboxmanage sharedfolder add ${vm_name} \
+    --name unicorndvcsetup \
+    -hostpath ${THIS_REPO_DIR} \
+    -automount
+
 done
