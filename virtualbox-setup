@@ -1,0 +1,37 @@
+#!/bin/bash -e
+
+__usage() {
+  echo At least one VM name required.
+  echo Usage: virtualbox-setup.sh vm-name-1 [vm-name-2...]
+  exit
+}
+
+[[ $# -lt 1 ]] && __usage
+
+MACHINE_OVF_FILE="$HOME/Downloads/MSEdge - Win10/MSEdge - Win10.ovf"
+NUM_CPUS=2
+MB_RAM=2048
+MB_VRAM=27
+
+VM_NAMES=("$@")
+
+[[ -z $(vboxmanage list hostonlyifs) ]] && vboxmanage hostonlyif create
+
+for vm_name in "${VM_NAMES[@]}"; do
+  vboxmanage import "${MACHINE_OVF_FILE}" \
+    --vsys 0 --vmname ${vm_name} \
+    --vsys 0 --cpus ${NUM_CPUS} \
+    --vsys 0 --memory ${MB_RAM}
+  vboxmanage modifyvm ${vm_name} \
+    --nic1 nat \
+    --nic2 hostonly \
+    --hostonlyadapter2 vboxnet0 \
+    --vram ${MB_VRAM} \
+    --graphicscontroller vboxsvga
+  vboxmanage storageattach ${vm_name} \
+    --storagectl "IDE Controller" \
+    --port 1 \
+    --device 0 \
+    --type dvddrive \
+    --medium /Applications/VirtualBox.app/Contents/MacOS/VBoxGuestAdditions.iso
+done
