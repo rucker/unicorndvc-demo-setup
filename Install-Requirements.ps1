@@ -11,5 +11,5 @@ Begin {
 
     Add-WindowsCapability -Online -Name NetFx3~~~~
 
-    Start-Process PowerShell -ArgumentList .\Init-UnicornRepos.ps1
+    Start-Process PowerShell -ArgumentList .\Setup-UnicornTestApp.ps1
 }
