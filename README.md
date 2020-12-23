@@ -7,6 +7,11 @@ This repo contains two scripts:
 - [VirtualBox](https://virtualbox.org/wiki/Downloads)
 - [Microsoft Edge Windows 10 VM image](https://developer.microsoft.com/en-us/microsoft-edge/tools/vms/)
 
+## Notes
+- On first login, Windows launches ".NET Runtime Optimization Service" which will tie up the CPU for the first few minutes
+- If you see the following dialog after completing setup when running `ConsoleApp2.exe`, it should not be necessary to install the feature. Instead hit Cancel, reboot the machine and try again
+![Install .NET Framework 3.5](images/need-framework-35.png)
+
 ## Creating the VMs
 To set up virtual machines, run `virtualbox-setup` and pass to it one or more machine names to be created. The script will:
 - Create/configure VMs
