@@ -10,7 +10,7 @@ __usage() {
 
 MACHINE_OVF_FILE="$HOME/Downloads/MSEdge - Win10/MSEdge - Win10.ovf"
 THIS_REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
-NUM_CPUS=2
+NUM_CPUS=4
 MB_RAM=2048
 MB_VRAM=27
 
