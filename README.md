@@ -18,4 +18,13 @@ NOTE: It is assumed that the VM image and its related .ovf file are located in `
 In addition, you can change the machine parameters (RAM, VRAM, CPU, etc) by modifying the relevant parameters in the script.  
 
 ## Setting up the VMs
-Once the machines are created: start them, run PowerShell as Administrator, and run `Install-Requirements.ps1` (which should be found on `Z:`). This script will install prerequisites such as .NET Framework 3.5 (required by UnicornDVC libraries) and dotnet core 3.1 (required by the demo app). It will also run `Setup-UnicornTestApp.ps1` which will clone the demo app repo and launch the UnicornDVC installer.
+Once the machines are created: start them, run PowerShell as Administrator, and run `Install-Requirements.ps1` (which should be found on `Z:`). This script will:
+- Install prerequisites including git, .NET Framework 3.5 (required by UnicornDVC libraries) and dotnet core 3.1 (required by the demo app)
+- Run `Setup-UnicornTestApp.ps1` which will clone the demo app repo and launch the UnicornDVC installer.
+
+Before you can use RDP and run the demo app, you will need to:
+- (Optional) change each machine's hostname to help differentiate between the two
+- Enable Remote Desktop on the server machine
+- Enable network discovery and file sharing. This can be done through Explorer:
+
+![Turn on network discovery and file sharing](./images/network-file-sharing.png)
