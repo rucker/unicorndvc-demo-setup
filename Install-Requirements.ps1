@@ -11,5 +11,11 @@ Begin {
 
     Add-WindowsCapability -Online -Name NetFx3~~~~
 
-    Start-Process PowerShell -ArgumentList .\Setup-UnicornTestApp.ps1
+    $proc = Start-Process PowerShell -ArgumentList .\Setup-UnicornTestApp.ps1
+    $handle = $proc.Handle
+    $proc.WaitForExit()
+    if ($proc.ExitCode -ne 0) {
+        Write-Warning "It looks like Setup-UnicornTestApp.ps1 did not complete successfully."
+        Write-Warning "Please try running the script again and note any errors shown."
+    }
 }

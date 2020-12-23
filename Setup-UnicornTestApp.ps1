@@ -22,6 +22,7 @@ if ($proc.ExitCode -ne 0) {
     Write-Warning "It looks like UnicornDVC Setup failed or was cancleled."
     Write-Warning "Please check the file $setupFile and run again"
     Read-Host -Prompt "Press Enter to exit"
+    exit 1
 }
 else {
     Write-Host "UnicornDVC test app setup complete. Code can be found in ~/repos/unicorndvctestapp"
