@@ -15,6 +15,7 @@ This repo contains two scripts:
 ## Creating the VMs
 To set up virtual machines, run `virtualbox-setup` and pass to it one or more machine names to be created. The script will:
 - Create/configure VMs
+- Create a host-only network and configure the VMs to use it via a second NIC so they can talk to each other
 - Mount a shared drive (`Z:`) containing this repo (which allows running the PowerShell scripts inside the machine)
 - Mount the [Guest Additions](https://docs.oracle.com/cd/E36500_01/E36502/html/qs-guest-additions.html) .iso in the machine DVD drive for easy installation
 
