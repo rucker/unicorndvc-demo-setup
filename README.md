@@ -8,6 +8,13 @@ This repo contains two scripts:
 - [Microsoft Edge Windows 10 VM image](https://developer.microsoft.com/en-us/microsoft-edge/tools/vms/)
 
 ## Notes
+* (MacOS High Sierra or later) If you encounter the following error, the two steps below should resolve the issue:
+```
+VBoxManage: error: VBoxNetAdpCtl: Error while adding new interface: failed to open /dev/vboxnetctl: No such file or directory
+```
+
+  1. Grant VirtualBox permission under System Preferences > Privacy & Security > General
+  2. run `sudo launchctl load /Library/LaunchDaemons/org.virtualbox.startup.plist` ([source](https://stackoverflow.com/a/36999421))
 - On first login, Windows launches ".NET Runtime Optimization Service" which will tie up the CPU for the first few minutes
 - If you see the following dialog after completing setup when running `ConsoleApp2.exe`, it should not be necessary to install the feature. Instead hit Cancel, reboot the machine and try again
 ![Install .NET Framework 3.5](images/need-framework-35.png)
