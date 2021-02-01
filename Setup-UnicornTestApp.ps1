@@ -1,7 +1,7 @@
 if (-not (Test-Path ~/repos)) {
     mkdir ~/repos | Out-Null
 }
-cd ~/repos
+Push-Location ~/repos
 if (-not (Test-Path unicorndvctestapp)) {
     # If git was just installed in the parent shell, it won't be found on $PATH yet
     & 'C:\Program Files\Git\cmd\git.exe' clone https://github.com/BabbageCom/unicorndvctestapp.git
@@ -22,9 +22,11 @@ if ($proc.ExitCode -ne 0) {
     Write-Warning "It looks like UnicornDVC Setup failed or was cancleled."
     Write-Warning "Please check the file $setupFile and run again"
     Read-Host -Prompt "Press Enter to exit"
+    Pop-Location
     exit 1
 }
 else {
     Write-Host "UnicornDVC test app setup complete. Code can be found in ~/repos/unicorndvctestapp"
+    Pop-Location
     Read-Host -Prompt "Press Enter to continue"
 }
